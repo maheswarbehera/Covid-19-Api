@@ -24,10 +24,36 @@
         </div>
 
         <div class="table-responsive">
+            <table class="table table-hover table-bordered text-center">
+                <thead>
+                    <tr class="table-primary">
+                        <td colspan="2">India Covid-19 Cases</td>
+                    </tr>
+                    <tr class="table-danger">
+                        <!-- <td>S.no</td> -->
+                        <!-- <td>ID</td>
+                        <td>Country</td>
+                        <td>CountryCode</td> -->
+                        <!-- <td>Slug</td> -->
+                        <!-- <td>NewConfirmed</td>
+                        <td>NewDeaths</td>
+                        <td>NewRecovered</td>
+                        <td>TotalConfirmed</td>
+                        <td>TotalDeaths</td>
+                        <td>TotalRecovered</td>
+                        <td>Date</td> -->
+                    </tr>
+                </thead>
+                <tbody id="country_data">                                         
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered text-center">
                 <thead>
                     <tr class="table-primary">
-                        <td colspan="12">Country Cases</td>
+                        <td colspan="12">Countries Cases</td>
                     </tr>
                     <tr class="table-danger">
                         <td>S.no</td>
@@ -44,7 +70,7 @@
                         <td>Date</td>
                     </tr>
                 </thead>
-                <tbody id="country_data">                                         
+                <tbody id="countries_data">                                         
                 </tbody>
             </table>
         </div>
@@ -58,15 +84,26 @@
                 success: function(response){
                     // console.log(response);
                     // console.log(response.Global);
-                    console.log(response.Countries);
+                    //console.log(response.Countries);
                     //console.log(response.Global.NewConfirmed);
+                    //console.log(response.Countries[77])
                     $.each(response.Global,function(key,value){
                         //console.log(key +":"+value);
                         $("#global_data").append("<tr><td>"+ key +"</td><td>"+ value +"</td></tr>");
                     });
+                    $.each(response.Countries[77],function(key,value){
+                        //console.log(key +":"+value);
+                        $("#country_data").append("<tr><td>"+ key +"</td><td>"+ value +"</td></tr>");
+                    });
+
+                    // $.each(response.Countries[77],function(key,value){
+                    //     //console.log(key +":"+value);
+                    //     $("#country_data").append("<tr><td>"+value.ID+"</td><td>"+ value.Country +"</td><td>"+ value.CountryCode +"</td><td>"+ value.NewConfirmed +"</td><td>"+ value.NewDeaths +"</td><td>"+ value.NewRecovered +"</td><td>"+ value.TotalConfirmed +"</td><td>"+ value.TotalDeaths +"</td><td>"+ value.TotalRecovered +"</td><td>"+ value.Date +"</td></tr>");
+                    // });
+                    
                     var sno = 1;
                     $.each(response.Countries,function(key,value){
-                        $("#country_data").append("<tr><td>"+ sno +"</td><td>"+value.ID+"</td><td>"+ value.Country +"</td><td>"+ value.CountryCode +"</td><td>"+ value.NewConfirmed +"</td><td>"+ value.NewDeaths +"</td><td>"+ value.NewRecovered +"</td><td>"+ value.TotalConfirmed +"</td><td>"+ value.TotalDeaths +"</td><td>"+ value.TotalRecovered +"</td><td>"+ value.Date +"</td></tr>");
+                        $("#countries_data").append("<tr><td>"+ sno +"</td><td>"+value.ID+"</td><td>"+ value.Country +"</td><td>"+ value.CountryCode +"</td><td>"+ value.NewConfirmed +"</td><td>"+ value.NewDeaths +"</td><td>"+ value.NewRecovered +"</td><td>"+ value.TotalConfirmed +"</td><td>"+ value.TotalDeaths +"</td><td>"+ value.TotalRecovered +"</td><td>"+ value.Date +"</td></tr>");
                         sno++;
                     });
                 }
