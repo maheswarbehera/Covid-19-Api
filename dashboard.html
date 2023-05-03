@@ -88,11 +88,11 @@
                 type: "get",
                 dataType: "json",
                 success: function(response){
-                    // console.log(response);
-                    // console.log(response.Global);
-                    //console.log(response.Countries);
+                    console.log(response);
+                    console.log(response.Global);
+                    console.log(response.Countries);
                     //console.log(response.Global.NewConfirmed);
-                    //console.log(response.Countries[77])
+                    console.log(response.Countries[77])
                     $.each(response.Global,function(key,value){
                         //console.log(key +":"+value);
                         $("#global_data").append("<tr><td>"+ key +"</td><td>"+ value +"</td></tr>");
